@@ -7,7 +7,7 @@ class I have elected to implement my own data structures.
 Currently you will find implementations for the following:
 
 DATA STRUCTURES:
-  -Singly Linked List
-  -Doubly Linked List
+-Singly Linked List
+-Doubly Linked List
 
 ALGORITHMS:
