@@ -21,10 +21,17 @@
 template<class T>
 class Queue_ADT{
 	private:
-		SinlgyLinkedList<T> queue_Data;
+		SinglyLinkedList<T> queue_Data;
 		int size;
 	public:
-		
+		Queue_ADT(){
+			size = queue_Data.getSize();
+		}
+
+		~Queue_ADT(){
+
+		}
+
 		bool isEmpty();
 		int  getSize();
 
@@ -36,15 +43,15 @@ class Queue_ADT{
 template<class T>
 bool Queue_ADT<T>::isEmpty(){
 	if (queue_Data.isEmpty()){
-		return true
+		return true;
 	}
 	else
-		return false
+		return false;
 }
 
 template<class T>
 int Queue_ADT<T>::getSize(){
-	queue_Data.getSize();
+	return queue_Data.getSize();
 }
 
 //Head of the singly linked list is considered end of the queue
