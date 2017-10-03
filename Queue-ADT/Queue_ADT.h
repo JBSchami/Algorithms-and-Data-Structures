@@ -63,7 +63,13 @@ void Queue_ADT<T>::dequeue(){
 
 template<class T>
 T Queue_ADT<T>::first(){
-	queue_Data.getLast();
+	if (isEmpty()){
+		std::cout << "Queue is empty" << std::endl;
+		return T();
+	}
+	else
+		return queue_Data.getLast();
+
 }
 
 #endif //QUEUE_ADT_H
