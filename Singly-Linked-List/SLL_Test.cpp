@@ -59,4 +59,9 @@ int main(int argc, char* argv[]){
 
 	myList->addLast(21);
 	myList->display();
+
+	cout << myList->getFirst() << endl;
+	cout << myList->getLast() << endl;
+
+	delete myList;
 }
