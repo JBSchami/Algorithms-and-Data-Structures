@@ -9,5 +9,6 @@ Currently you will find implementations for the following:
 * DATA STRUCTURES:
   * Singly Linked List
   * Doubly Linked List
+  * Stack ADT
 
 * ALGORITHMS:
