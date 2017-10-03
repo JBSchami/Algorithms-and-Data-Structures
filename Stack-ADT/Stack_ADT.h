@@ -16,7 +16,6 @@
 #define STACK_ADT_H
 
 #include "../Singly-Linked-List/SLL.h"
-#include <stdexcept>
 #include <iostream>
 
 //C++ Template for a Doubly linked list ADT
