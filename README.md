@@ -10,5 +10,6 @@ Currently you will find implementations for the following:
   * Singly Linked List
   * Doubly Linked List
   * Stack ADT
+  * Queue ADT
 
 * ALGORITHMS:
