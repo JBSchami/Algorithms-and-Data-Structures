@@ -36,6 +36,7 @@ class SinglyLinkedList {
 		int size;
 	public:
 		SinglyLinkedList(){head = NULL; tail = NULL; size = 0;} //default constructor
+		~SinglyLinkedList(){clear();} //destructor, ensures memory cleanup.
 
 		bool isEmpty();
 		int getSize();
