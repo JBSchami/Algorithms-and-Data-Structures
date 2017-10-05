@@ -29,8 +29,8 @@ SLL: \
 	SLL_Test
 
 
-#SLLdebug: CPP += -DDEBUG -g
-#SLLdebug: SLL_Test
+SLLdebug: CPP += -DDEBUG -g
+SLLdebug: SLL_Test
 
 SLL_Test: $(SLL_OBJS)
 	$(CPP) $(LFLAGS) $(SLL_OBJS) $(OFLAG) SLL_Test.exe

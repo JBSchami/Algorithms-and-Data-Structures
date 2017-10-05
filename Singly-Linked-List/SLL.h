@@ -35,23 +35,37 @@ class SinglyLinkedList {
 		node<T> *tail;
 		int size;
 	public:
-		SinglyLinkedList(){head = NULL; tail = NULL; size = 0;}
+		SinglyLinkedList(){head = NULL; tail = NULL; size = 0;} //default constructor
 
 		bool isEmpty();
 		int getSize();
 		void display();
 		
-		void addFirst(T value);
-		void addLast(T value);
+		void add(T value); //change to add
+		void addFirst(T value);	
+		void addAt(int pos, T value); //change to insertAt
+		//void addBefore(int pos, T value);
+		//void addAfter(int pos, T value);
 		
+		void remove();
 		void removeFirst();
-		void removeLast();
+		void removeAt(int pos); //change to removeAt
 
-		void insertPosition(int pos, T value);
-		void removePosition(int pos);
+		//int indexOf(T value);
+		//bool contains(T value);
+		//int contains(T value);
+		//int find(T value);
+		//T findAt(int pos);
+		//void forEach(fn);
+		//T[] toArray();
 
-		T getFirst();
-		T getLast();
+		T getHeadNode();
+		T getTailNode();
+
+		//T getHeadNodeNode();
+		//T getTailNode();
+		void clear();
+
 };
 
 //Checks if the SLL is empty
@@ -65,22 +79,43 @@ bool SinglyLinkedList<T>::isEmpty(){
 
 //Returns the size of the SLL
 template<class T>
-int SinglyLinkedList<T>::getSize(){
-	return size;
-}
+int SinglyLinkedList<T>::getSize(){return size;}
 
 //Outputs the nodes of the SLL
 template<class T>
 void SinglyLinkedList<T>::display(){
-    node<T> *temp = new node<T>;
-    temp = head;
-    while(temp!=NULL)
-    {
-      std::cout<<temp->data<<"\t";
-      temp=temp->next;
+    if(isEmpty()){
+    	std::cout << "Empty list" << std::endl;
     }
-    std::cout<<std::endl;
+    else{
+	    node<T> *temp = new node<T>;
+	    temp = head;
+	    while(temp!=NULL)
+	    {
+	      std::cout<<temp->data<<"\t";
+	      temp=temp->next;
+	    }
+	    std::cout<<std::endl;
+	}
 } 
+
+//Adds a node at the tail of the SLL
+template<class T>
+void SinglyLinkedList<T>::add(T value){
+	node<T> *temp = new node<T>;
+	temp->data = value;
+	temp->next = NULL;
+	if(isEmpty()){
+		head = temp;
+		tail = temp;
+		temp = NULL;
+	}
+	else{
+		tail->next = temp;
+		tail = temp;
+	}
+	size++;
+}
 
 //Adds a node at the head of the SLL
 template<class T>
@@ -100,63 +135,12 @@ void SinglyLinkedList<T>::addFirst(T value){
 	size++;
 }
 
-//Adds a node at the tail of the SLL
-template<class T>
-void SinglyLinkedList<T>::addLast(T value){
-	node<T> *temp = new node<T>;
-	temp->data = value;
-	temp->next = NULL;
-	if(isEmpty()){
-		std::cout<<"Adding"<<std::endl;
-		head = temp;
-		tail = temp;
-		temp = NULL;
-	}
-	else{
-		tail->next = temp;
-		tail = temp;
-	}
-	size++;
-}
-
-
-//Removes the head of the SLL
-template<class T>
-void SinglyLinkedList<T>::removeFirst(){
-	if(isEmpty()){
-		//do nothing
-	}
-	else{
-		node<T> *temp = head;
-		head = head->next;
-		delete temp;
-		size--;
-	}
-}
-
-
-//Removes the tail of the SLL
-template<class T>
-void SinglyLinkedList<T>::removeLast(){
-	node<T> *current = new node<T>;
-	node<T> *previous = new node<T>;
-	current = head;
-	while(current->next != NULL){
-		previous = current;
-		current = current->next;
-	}
-	tail = previous;
-	previous->next = NULL;
-	delete current;
-	size--;
-}
-
-
 //Inserts a node at the specified index of the SLL
 template<class T>
-void SinglyLinkedList<T>::insertPosition(int pos, T value){
-	if(pos < 0 || pos > (size-1))
+void SinglyLinkedList<T>::addAt(int pos, T value){
+	if((size-1) < pos){
 		std::cout<<"Index out of range"<<std::endl;
+	}
 	else{
 		node<T> *previous = new node<T>;
 		node<T> *current = new node<T>;
@@ -177,10 +161,48 @@ void SinglyLinkedList<T>::insertPosition(int pos, T value){
 	}
 }
 
+//Removes the tail of the SLL
+template<class T>
+void SinglyLinkedList<T>::remove(){
+	if(isEmpty()){
+		//do nothing
+	}
+	else{
+		node<T> *current = new node<T>;
+		node<T> *previous = new node<T>;
+		current = head;
+		while(current->next != NULL){
+			previous = current;
+			current = current->next;
+		}
+		tail = previous;
+		previous->next = NULL;
+		delete current;
+		size--;
+	}
+}
+
+//Removes the head of the SLL
+template<class T>
+void SinglyLinkedList<T>::removeFirst(){
+	if(isEmpty()){
+		//do nothing
+	}
+	else{
+		node<T> *temp = head;
+		head = head->next;
+		delete temp;
+		size--;
+	}
+}
+
 //Removes a node at the specified index of the SLL
 template<class T>
-void SinglyLinkedList<T>::removePosition(int pos){
-	if(pos<0 || pos > (size-1))
+void SinglyLinkedList<T>::removeAt(int pos){
+	if(isEmpty()){
+		//do nothing
+	}
+	else if(pos<0 || pos > (size-1))
 		std::cout<<"Index out of range"<<std::endl;
 	else{
 		node<T> *previous = new node<T>;
@@ -200,15 +222,29 @@ void SinglyLinkedList<T>::removePosition(int pos){
 
 //Returns the element at the head of the list
 template<class T>
-T SinglyLinkedList<T>::getFirst(){
-	return head->data;
-}
+T SinglyLinkedList<T>::getHeadNode(){return head->data;}
 
 //Returns the element at the tail of the list
 template<class T>
-T SinglyLinkedList<T>::getLast(){
-	return tail->data;
-}
+T SinglyLinkedList<T>::getTailNode(){return tail->data;}
 
+template<class T>
+void SinglyLinkedList<T>::clear(){
+	if(isEmpty()){
+		//doNothing
+	}
+	else{
+		while(head != tail){
+			node<T> *temp = new node<T>;
+			temp = head;
+			head = head->next;
+			delete temp;
+			size--;
+		}
+		head = NULL;
+		tail = NULL;
+		size--;
+	}
+}
 
 #endif //SLL_H

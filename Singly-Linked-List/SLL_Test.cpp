@@ -22,8 +22,9 @@ int main(int argc, char* argv[]){
 
 	SinglyLinkedList<int>* myList = new SinglyLinkedList<int>;
 
-	//myList->addLast(25);
+	myList->add(25);
 	myList->addFirst(12);
+	myList->add(85);
 	myList->display();
 
 	myList->addFirst(14);
@@ -38,30 +39,44 @@ int main(int argc, char* argv[]){
 	myList->addFirst(11);
 	myList->display();
 
-	myList->addLast(99);
+	myList->clear();
+
+	myList->add(99);
 	myList->display();
 
-	myList->insertPosition(1,36);
+	myList->add(54);
+
+	myList->addAt(1,36);
 	myList->display();
 
-	myList->insertPosition(5,22);
+	myList->addAt(5,22);
 	myList->display();
+
+	myList->add(10);
+	myList->add(19);
+
+	myList->addAt(5, 55);
 	
-	//myList->removeLast();
+	//myList->remove();
 	myList->removeFirst();
 	myList->display();
 
-	myList->removePosition(2);
+	myList->removeAt(2);
 	myList->display();
 	
-	myList->removeLast();
+	myList->remove();
 	myList->display();
 
-	myList->addLast(21);
+	myList->add(21);
 	myList->display();
 
-	cout << myList->getFirst() << endl;
-	cout << myList->getLast() << endl;
+	//myList->add(24);
+
+	cout << myList->getHeadNode() << endl;
+	cout << myList->getTailNode() << endl;
+
+	myList->clear();
+	myList->display();
 
 	delete myList;
 }
