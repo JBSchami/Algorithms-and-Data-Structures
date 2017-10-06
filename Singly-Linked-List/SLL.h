@@ -1,7 +1,7 @@
 /************************************************************ 
  *  @file    	SLL.h
  *  @author  	Jonathan Bedard Schami
- *  @date    	02/10/2017  
+ *  @date    	06/10/2017  
  *  @version 	1.0 
  *  
  *  @brief 		Singly Linked List Implementation
@@ -52,7 +52,6 @@ class SinglyLinkedList {
 		void removeFirst();
 		void removeAt(int pos); //change to removeAt
 
-		//int indexOf(T value);
 		//bool contains(T value);
 		//int contains(T value);
 		//int find(T value);
@@ -63,6 +62,7 @@ class SinglyLinkedList {
 		T getHeadNode();
 		T getTailNode();
 
+		int indexOf(T value);
 		//T getHeadNodeNode();
 		//T getTailNode();
 		void clear();
@@ -228,6 +228,34 @@ T SinglyLinkedList<T>::getHeadNode(){return head->data;}
 //Returns the element at the tail of the list
 template<class T>
 T SinglyLinkedList<T>::getTailNode(){return tail->data;}
+
+template<class T>
+int SinglyLinkedList<T>::indexOf(T value){
+	node<T> *temp = new node<T>;
+	int index = 0;
+	temp = head;
+	if(head == tail){
+		if (temp->data == value)
+			return index;
+	}
+	else{
+		while(temp->next != NULL){
+			if (temp->data == value){
+				return index;
+			}
+			else if(temp->next == tail){
+				if(tail->data == value){
+					return index + 1;
+				}
+			}
+			else{
+				temp = temp->next;
+				index++;
+			}
+		}
+	}
+	return -1;
+}
 
 template<class T>
 void SinglyLinkedList<T>::clear(){

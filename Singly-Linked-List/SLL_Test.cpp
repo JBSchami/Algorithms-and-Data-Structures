@@ -23,6 +23,7 @@ int main(int argc, char* argv[]){
 	SinglyLinkedList<int>* myList = new SinglyLinkedList<int>;
 
 	myList->add(25);
+	cout << "Index of 25: " << myList->indexOf(25) << endl;
 	myList->addFirst(12);
 	myList->add(85);
 	myList->display();
@@ -35,6 +36,10 @@ int main(int argc, char* argv[]){
 
 	myList->addFirst(32);
 	myList->display();
+
+	cout << "Index of 26: " << myList->indexOf(26) << endl;
+	cout << "Index of 85: " << myList->indexOf(85) << endl;
+	cout << "Index of 25: " << myList->indexOf(25) << endl;
 
 	myList->addFirst(11);
 	myList->display();
