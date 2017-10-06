@@ -17,7 +17,6 @@
 #ifndef SLL_H
 #define SLL_H
 
-#include <stdexcept>
 #include <iostream>
 
 template<typename T>
@@ -52,8 +51,6 @@ class SinglyLinkedList {
 		void removeFirst();
 		void removeAt(int pos); //change to removeAt
 
-		//bool contains(T value);
-		//int contains(T value);
 		//int find(T value);
 		//T findAt(int pos);
 		//void forEach(fn);
@@ -62,9 +59,9 @@ class SinglyLinkedList {
 		T getHeadNode();
 		T getTailNode();
 
+		bool contains(T value);
 		int indexOf(T value);
-		//T getHeadNodeNode();
-		//T getTailNode();
+
 		void clear();
 
 };
@@ -230,20 +227,37 @@ template<class T>
 T SinglyLinkedList<T>::getTailNode(){return tail->data;}
 
 template<class T>
+bool SinglyLinkedList<T>::contains(T value){
+	node<T> *temp = new node<T>;
+	temp = head;
+	if(temp->data == value)
+		return true;
+	else{
+		while(temp->next != NULL){
+			if(temp->data == value)
+				return true;
+			else{
+				temp = temp->next;
+			}
+		}
+		return false;
+	}
+}
+
+template<class T>
 int SinglyLinkedList<T>::indexOf(T value){
 	node<T> *temp = new node<T>;
 	int index = 0;
 	temp = head;
-	if(head == tail){
-		if (temp->data == value)
-			return index;
+	if(head->data == value){ //handles case where there is only one node
+		return index;
 	}
 	else{
 		while(temp->next != NULL){
 			if (temp->data == value){
 				return index;
 			}
-			else if(temp->next == tail){
+			else if(temp->next == tail){//handles case where the next node is the tail
 				if(tail->data == value){
 					return index + 1;
 				}

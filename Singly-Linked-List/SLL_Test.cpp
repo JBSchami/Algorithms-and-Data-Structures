@@ -37,6 +37,10 @@ int main(int argc, char* argv[]){
 	myList->addFirst(32);
 	myList->display();
 
+	cout << "Contains 26: " << myList->contains(26) << endl;
+	cout << "Contains 11: " << myList->contains(11) << endl;
+
+	cout << "Index of 32: " << myList->indexOf(32) << endl;
 	cout << "Index of 26: " << myList->indexOf(26) << endl;
 	cout << "Index of 85: " << myList->indexOf(85) << endl;
 	cout << "Index of 25: " << myList->indexOf(25) << endl;
