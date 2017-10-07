@@ -18,6 +18,7 @@
 #define SLL_H
 
 #include <iostream>
+#include <vector>
 
 template<typename T>
 struct node{
@@ -54,7 +55,6 @@ class SinglyLinkedList {
 		//int find(T value);
 		//T findAt(int pos);
 		//void forEach(fn);
-		//T[] toArray();
 
 		T getHeadNode();
 		T getTailNode();
@@ -62,6 +62,8 @@ class SinglyLinkedList {
 		bool contains(T value);
 		int indexOf(T value);
 
+		std::vector<T> toVector();
+		
 		void clear();
 
 };
@@ -269,6 +271,18 @@ int SinglyLinkedList<T>::indexOf(T value){
 		}
 	}
 	return -1;
+}
+
+template<class T>
+std::vector<T> SinglyLinkedList<T>::toVector(){
+	std::vector<T> newVector;
+	node<T> *temp = new node<T>;
+	temp = head;
+	for(int i = 0; i<size; i++){
+		newVector.push_back(temp->data);
+		temp = temp->next;
+	}
+	return newVector;
 }
 
 template<class T>

@@ -15,6 +15,7 @@
 #include "SLL.h"
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -36,6 +37,16 @@ int main(int argc, char* argv[]){
 
 	myList->addFirst(32);
 	myList->display();
+
+	vector<int> myVector;
+	myVector = myList->toVector();
+
+	for(int i = 0; i < (int)myVector.size(); i++){
+		cout<< myVector[i] << " ";
+	}
+
+	
+	cout << endl;
 
 	cout << "Contains 26: " << myList->contains(26) << endl;
 	cout << "Contains 11: " << myList->contains(11) << endl;
