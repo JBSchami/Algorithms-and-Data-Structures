@@ -207,7 +207,7 @@ void SinglyLinkedList<T>::removeAt(int pos){
 		//do nothing
 	}
 	else if(pos<0 || pos > (size-1))
-		std::cout<<"Index out of range"<<std::endl;
+		std::cout<<"Index out of range" << std::endl;
 	else{
 		node<T> *previous = new node<T>;
 		node<T> *current = new node<T>;
@@ -234,19 +234,24 @@ T SinglyLinkedList<T>::getTailNode(){return tail->data;}
 
 template<class T>
 bool SinglyLinkedList<T>::contains(T value){
-	node<T> *temp = new node<T>;
-	temp = head;
-	if(temp->data == value)
-		return true;
-	else{
-		while(temp->next != NULL){
-			if(temp->data == value)
-				return true;
-			else{
-				temp = temp->next;
-			}
-		}
+	if(isEmpty()){
 		return false;
+	}
+	else{
+		node<T> *temp = new node<T>;
+		temp = head;
+		if(temp->data == value)
+			return true;
+		else{
+			while(temp->next != NULL){
+				if(temp->data == value)
+					return true;
+				else{
+					temp = temp->next;
+				}
+			}
+			return false;
+		}
 	}
 }
 
@@ -254,23 +259,30 @@ template<class T>
 int SinglyLinkedList<T>::indexOf(T value){
 	node<T> *temp = new node<T>;
 	int index = 0;
-	temp = head;
-	if(head->data == value){ //handles case where there is only one node
-		return index;
+	if(isEmpty()){
+		return -1;
 	}
 	else{
-		while(temp->next != NULL){
-			if (temp->data == value){
-				return index;
-			}
-			else if(temp->next == tail){//handles case where the next node is the tail
-				if(tail->data == value){
-					return index + 1;
+		temp = head;
+		if(head->data == value){ //handles case where there is only one node
+			return index;
+		}
+		else{
+			while(temp->next != NULL){
+				if (temp->data == value){
+					return index;
 				}
-			}
-			else{
-				temp = temp->next;
-				index++;
+				else if(temp->next == tail){//handles case where the next node is the tail
+					if(tail->data == value){
+						return index + 1;
+					}
+					else
+						temp = temp->next;
+				}
+				else{
+					temp = temp->next;
+					index++;
+				}
 			}
 		}
 	}
