@@ -1,7 +1,7 @@
 /************************************************************ 
  *  @file    	SLL.h
  *  @author  	Jonathan Bedard Schami
- *  @date    	02/10/2017  
+ *  @date    	06/10/2017  
  *  @version 	1.0 
  *  
  *  @brief 		Singly Linked List Implementation
@@ -17,8 +17,8 @@
 #ifndef SLL_H
 #define SLL_H
 
-#include <stdexcept>
 #include <iostream>
+#include <vector>
 
 template<typename T>
 struct node{
@@ -52,19 +52,18 @@ class SinglyLinkedList {
 		void removeFirst();
 		void removeAt(int pos); //change to removeAt
 
-		//int indexOf(T value);
-		//bool contains(T value);
-		//int contains(T value);
 		//int find(T value);
 		//T findAt(int pos);
 		//void forEach(fn);
-		//T[] toArray();
 
 		T getHeadNode();
 		T getTailNode();
 
-		//T getHeadNodeNode();
-		//T getTailNode();
+		bool contains(T value);
+		int indexOf(T value);
+
+		std::vector<T> toVector();
+		
 		void clear();
 
 };
@@ -232,6 +231,63 @@ T SinglyLinkedList<T>::getHeadNode(){return head->data;}
 //Returns the element at the tail of the list
 template<class T>
 T SinglyLinkedList<T>::getTailNode(){return tail->data;}
+
+template<class T>
+bool SinglyLinkedList<T>::contains(T value){
+	node<T> *temp = new node<T>;
+	temp = head;
+	if(temp->data == value)
+		return true;
+	else{
+		while(temp->next != NULL){
+			if(temp->data == value)
+				return true;
+			else{
+				temp = temp->next;
+			}
+		}
+		return false;
+	}
+}
+
+template<class T>
+int SinglyLinkedList<T>::indexOf(T value){
+	node<T> *temp = new node<T>;
+	int index = 0;
+	temp = head;
+	if(head->data == value){ //handles case where there is only one node
+		return index;
+	}
+	else{
+		while(temp->next != NULL){
+			if (temp->data == value){
+				return index;
+			}
+			else if(temp->next == tail){//handles case where the next node is the tail
+				if(tail->data == value){
+					return index + 1;
+				}
+			}
+			else{
+				temp = temp->next;
+				index++;
+			}
+		}
+	}
+	return -1;
+}
+
+template<class T>
+std::vector<T> SinglyLinkedList<T>::toVector(){
+	std::vector<T> newVector;
+	node<T> *temp = new node<T>;
+	temp = head;
+	for(int i = 0; i<size; i++){
+		newVector.push_back(temp->data);
+		temp = temp->next;
+	}
+	return newVector;
+}
 
 template<class T>
 void SinglyLinkedList<T>::clear(){

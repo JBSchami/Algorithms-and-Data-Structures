@@ -15,6 +15,7 @@
 #include "SLL.h"
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -23,6 +24,7 @@ int main(int argc, char* argv[]){
 	SinglyLinkedList<int>* myList = new SinglyLinkedList<int>;
 
 	myList->add(25);
+	cout << "Index of 25: " << myList->indexOf(25) << endl;
 	myList->addFirst(12);
 	myList->add(85);
 	myList->display();
@@ -35,6 +37,24 @@ int main(int argc, char* argv[]){
 
 	myList->addFirst(32);
 	myList->display();
+
+	vector<int> myVector;
+	myVector = myList->toVector();
+
+	for(int i = 0; i < (int)myVector.size(); i++){
+		cout<< myVector[i] << " ";
+	}
+
+	
+	cout << endl;
+
+	cout << "Contains 26: " << myList->contains(26) << endl;
+	cout << "Contains 11: " << myList->contains(11) << endl;
+
+	cout << "Index of 32: " << myList->indexOf(32) << endl;
+	cout << "Index of 26: " << myList->indexOf(26) << endl;
+	cout << "Index of 85: " << myList->indexOf(85) << endl;
+	cout << "Index of 25: " << myList->indexOf(25) << endl;
 
 	myList->addFirst(11);
 	myList->display();
