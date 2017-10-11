@@ -29,8 +29,8 @@ Queue: \
 	Queue_ADT_Test
 
 
-#SLLdebug: CPP += -DDEBUG -g
-#SLLdebug: SLL_Test
+Qdebug: CPP += -DDEBUG -g
+Qdebug: Queue_ADT_Test
 
 Queue_ADT_Test: $(SLL_OBJS)
 	$(CPP) $(LFLAGS) $(SLL_OBJS) $(OFLAG) Queue_Test.exe

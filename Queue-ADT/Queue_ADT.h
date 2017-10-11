@@ -65,7 +65,12 @@ void Queue_ADT<T>::enqueue(T value){
 //This is to respecte the first in first out principle.
 template<class T>
 void Queue_ADT<T>::dequeue(){
-	queue_Data.removeLast();
+	if(isEmpty()){
+		std::cout<<"Queue is empty" << std::endl;
+	}
+	else{
+		queue_Data.remove();	
+	}
 }
 
 template<class T>
@@ -75,7 +80,7 @@ T Queue_ADT<T>::first(){
 		return T();
 	}
 	else
-		return queue_Data.getLast();
+		return queue_Data.getTailNode();
 
 }
 
