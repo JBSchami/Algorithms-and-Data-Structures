@@ -36,7 +36,7 @@ class SinglyLinkedList {
 		int size;
 	public:
 		SinglyLinkedList(){head = NULL; tail = NULL; size = 0;} //default constructor
-		~SinglyLinkedList(){clear();} //destructor, ensures memory cleanup.
+		~SinglyLinkedList(){clear();} //destructor, ensures memory cleanup. 
 
 		bool isEmpty();
 		int getSize();
@@ -167,6 +167,10 @@ template<class T>
 void SinglyLinkedList<T>::remove(){
 	if(isEmpty()){
 		//do nothing
+	}
+	else if(head == tail){
+		head = NULL;
+		tail = NULL;
 	}
 	else{
 		node<T> *current = new node<T>;
