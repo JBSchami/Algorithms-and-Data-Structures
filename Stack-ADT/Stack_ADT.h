@@ -39,7 +39,7 @@ class Stack_ADT {
 //Returns the value at the top of the stack without removing it
 template<class T>
 T Stack_ADT<T>::top(){
-	return Stack_Data.getFirst();
+	return Stack_Data.getHeadNode();
 }
 
 //Returns how many items are on the stack

@@ -25,14 +25,14 @@ CLEAN_OBJS = Stack_ADT_Test.exe
 all: \
 	Stack_ADT_Test \
 
-SLL: \
+Stack: \
 	Stack_ADT_Test
 
 
 #SLLdebug: CPP += -DDEBUG -g
 #SLLdebug: SLL_Test
 
-SLL_Test: $(SLL_OBJS)
+Stack_ADT_Test: $(SLL_OBJS)
 	$(CPP) $(LFLAGS) $(SLL_OBJS) $(OFLAG) Stack_ADT_Test.exe
 
 #===========
