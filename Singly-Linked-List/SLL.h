@@ -52,8 +52,6 @@ class SinglyLinkedList {
 		void removeFirst();
 		void removeAt(int pos); //change to removeAt
 
-		//int find(T value);
-		//T findAt(int pos);
 		//void forEach(fn);
 
 		T getHeadNode();
@@ -63,6 +61,7 @@ class SinglyLinkedList {
 		int indexOf(T value);
 
 		std::vector<T> toVector();
+		T* toArray(T asArray[]);
 		
 		void clear();
 
@@ -299,6 +298,23 @@ std::vector<T> SinglyLinkedList<T>::toVector(){
 		temp = temp->next;
 	}
 	return newVector;
+}
+
+template<class T>
+T* SinglyLinkedList<T>::toArray(T asArray[]){
+	if(isEmpty()){
+		//doNothing
+		return NULL;
+	}
+	else{
+		node<T> *temp = new node<T>;
+		temp = head;
+		for(int i = 0; i < size; i++){
+			asArray[i] = temp->data;
+			temp = temp->next;
+		}
+		return asArray;
+	}
 }
 
 template<class T>
