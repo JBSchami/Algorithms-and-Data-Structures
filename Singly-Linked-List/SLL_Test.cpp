@@ -50,6 +50,7 @@ int main(int argc, char* argv[]){
 	10	|| indexOf(x)		when x is in the linked list
 	11	|| indexOf(x)		when x is not in the linked list
 	7	|| toVector()
+	28  || toArray()
 	22	|| clear()
 	========================================================
 	*/
@@ -85,7 +86,6 @@ int main(int argc, char* argv[]){
 		cout<< myVector[i] << " ";
 	}
 	cout << endl;
-
 //8
 	cout << "myList->contains(26), should return 0 : " << myList->contains(26) << endl;
 //9
