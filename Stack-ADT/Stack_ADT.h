@@ -32,14 +32,14 @@ class Stack_ADT {
 		void display();
 		
 		void push(T value);
-		void pop();
+		T pop();
 
 };
 
 //Returns the value at the top of the stack without removing it
 template<class T>
 T Stack_ADT<T>::top(){
-	return Stack_Data.getHeadNode();
+	return Stack_Data.getHeadNodeData();
 }
 
 //Returns how many items are on the stack
@@ -75,12 +75,15 @@ void Stack_ADT<T>::push(T value){
 
 //Removes the value at the top of the stack
 template<class T>
-void Stack_ADT<T>::pop(){
+T Stack_ADT<T>::pop(){
 	if (isEmpty()){
 		//do nothing
+		return T();
 	}
 	else{
+		T temp = top();
 		Stack_Data.removeFirst();
+		return temp;
 	}
 }
 

@@ -26,10 +26,12 @@ int main(int argc, char* argv[]){
 	myStack->push(34);
 	myStack->display();
 
-	cout << myStack->getSize() << endl;
-
-	myStack->pop();
+	cout << "Stack Size: " << myStack->getSize() << endl;
+	int value = myStack->pop();
+	cout << "popped node: " << value << endl;
 	myStack->display();
+	value = myStack->pop();
+	cout << "popped node: " << value << endl;
 	myStack->pop();
 	myStack->display();
 	myStack->pop();
