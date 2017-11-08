@@ -54,8 +54,9 @@ class SinglyLinkedList {
 
 		//void forEach(fn);
 
-		T getHeadNode();
-		T getTailNode();
+		T getHeadNodeData();
+		node<T>* getHeadNode();
+		T getTailNodeData();
 
 		bool contains(T value);
 		int indexOf(T value);
@@ -225,11 +226,14 @@ void SinglyLinkedList<T>::removeAt(int pos){
 
 //Returns the element at the head of the list
 template<class T>
-T SinglyLinkedList<T>::getHeadNode(){return head->data;}
+T SinglyLinkedList<T>::getHeadNodeData(){return head->data;}
+
+template<class T>
+node<T>* SinglyLinkedList<T>::getHeadNode(){return head;}
 
 //Returns the element at the tail of the list
 template<class T>
-T SinglyLinkedList<T>::getTailNode(){return tail->data;}
+T SinglyLinkedList<T>::getTailNodeData(){return tail->data;}
 
 template<class T>
 bool SinglyLinkedList<T>::contains(T value){
