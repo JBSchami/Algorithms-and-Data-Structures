@@ -53,6 +53,7 @@ BinaryTree<T>::Node::Node(){parent = NULL; lChild = NULL; rChild = NULL; data = 
 
 template<typename T>
 void BinaryTree<T>::Node::print(){
+	if(this!=NULL){
 	std::cout << "NODE: " 		<< this 
 			  << " | data: " 	<< this->data 
 			  << " | parent: " 	<< this->parent 
@@ -60,6 +61,11 @@ void BinaryTree<T>::Node::print(){
 			  << " | rChild: " 	<< this->rChild
 			  << " | depth: "	<< this->depth 
 			  << std::endl;
+	}
+	else{
+		std::cout << "Does not exist in binary tree" << std::endl;
+	}
+
 }
 
 template <typename T>
@@ -106,6 +112,9 @@ void BinaryTree<T>::insert(T data, Node* currentNode, int currentDepth){
 template <typename T>
 typename BinaryTree<T>::Node* BinaryTree<T>::binarySearch(T value, Node* currentNode){
 	if(isEmpty()){
+		return NULL;
+	}
+	else if(currentNode == NULL){
 		return NULL;
 	}
 	else{

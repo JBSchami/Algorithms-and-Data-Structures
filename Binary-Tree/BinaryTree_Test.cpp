@@ -40,4 +40,7 @@ int main(int argc, char* argv[]){
 	searchNode = myBTree->binarySearch(65, myBTree->getRoot());
 	searchNode->print();
 
+
+	searchNode = myBTree->binarySearch(8, myBTree->getRoot());
+	searchNode->print();
 }
