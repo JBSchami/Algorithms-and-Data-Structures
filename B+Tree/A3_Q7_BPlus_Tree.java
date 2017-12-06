@@ -1,8 +1,8 @@
 /**
- * Code used to implement the B+Tree bottom up construction approach required for
+ * Code used to implement the B+Tree bottom up approach required for
  * Assignment 3 Question 7
  * Re-used here for Assignment 3, to sort the data in the assignment 3
- * @author   Jonathan Bedard Schami <jbschami@gmail.com>
+ * @author   Jonathan Bedard Schami <jbeda091@uottawa.ca>
  * @version  1.0
  * @since    1.0
  */
@@ -22,6 +22,8 @@ public class A3_Q7_BPlus_Tree{
     private static int twoM;
     private static int floor;
     public static A3_Q7_BPlus_Node root;
+
+    private static int keyCompares = 0;
 
     /**
      * Reads the data file and sorts the data required to build the B+ tree
@@ -183,9 +185,15 @@ public class A3_Q7_BPlus_Tree{
      * @return the record if found, an empty record otherwise
      */
     public static A3_Q7_DataModel searchFor(String key){
+        keyCompares=0;
         A3_Q7_BPlus_Node temp = findLeaf(key, root);
         if(temp!=null){
-            return findRecord(key,(A3_Q7_BPlus_Leaf)temp);
+            A3_Q7_DataModel dataTemp = findRecord(key,(A3_Q7_BPlus_Leaf)temp);
+            System.out.println("");
+            System.out.println("Search For(" + key + ") found in (" + keyCompares + ") key compares");
+            dataTemp.printRecord();
+            System.out.println("====================================================================");
+            return dataTemp;
         }
         else{
             return null;
@@ -201,24 +209,37 @@ public class A3_Q7_BPlus_Tree{
     private static A3_Q7_BPlus_Node findLeaf(String key, A3_Q7_BPlus_Node currentNode){
         String[] keySet = currentNode.getKeys();
         if (currentNode.getClass() == A3_Q7_BPlus_Leaf.class){
+            keyCompares+=1;
             return currentNode;
         }
         else if(key.compareTo(keySet[0]) < 0){
+            keyCompares+=1;
             return findLeaf(key, currentNode.children[0]);
         }
         else{
-            for(int i = 0; i < keySet.length-1; i++){
-                if(i==keySet.length-1){
-                    if(key.compareTo(keySet[i]) >= 0)
-                        return findLeaf(key, currentNode.children[i]);
+            int j = 0;
+            for(int i = 0; i < keySet.length; i++){
+                if(keySet[i]!=null){
+                    j++;
+                }
+            }
+            for(int i = 0; i < j; i++){
+                if(i==j-1){
+                    if(key.compareTo(keySet[i]) >= 0){
+                        keyCompares+=1;
+                        return findLeaf(key, currentNode.children[i+1]);
+                    }
+
                 }
                 else{
                     if (key.compareTo(keySet[i]) >= 0 && key.compareTo(keySet[i+1]) < 0){
+                        keyCompares+=1;
                         return findLeaf(key, currentNode.children[i+1]);
                     }
                 }
             }
         }
+        keyCompares+=1;
         return null;
     }
 
@@ -236,6 +257,7 @@ public class A3_Q7_BPlus_Tree{
             A3_Q7_DataModel[] records = leafNode.getRecords();
             for(A3_Q7_DataModel record:records){
                 if(record!=null){
+                    keyCompares+=1;
                     if(record.getName().equals(key) && record!=null){
                         return record;
                     }
@@ -247,21 +269,23 @@ public class A3_Q7_BPlus_Tree{
 
     public static void main(String args[]){
         ArrayList<A3_Q7_DataModel> userData = readFile("data.txt");
-        System.out.println(userData.size());
 
         A3_Q7_BPlus_Tree bPlusTree = new A3_Q7_BPlus_Tree(10, userData, 60);
 
         //displayBPlusTree(root);
 
-        A3_Q7_DataModel temp = searchFor("Almeida, Ana");
-        temp.printRecord();
+        A3_Q7_DataModel temp = searchFor("Azevedo, Ana");
 
-        temp = searchFor("John, Doe");
-        temp.printRecord();
+        temp = searchFor("Silva, Rui");
 
-        temp = searchFor("Cuzzocrea, Alfredo");
-        temp.printRecord();
+        temp = searchFor("Boussebough, Imane");
+
+        temp = searchFor("Terracina, Giorgio");
+
+        temp = searchFor("Lefebvre, Peter");
+
+        temp = searchFor("Houghten, Sher");
+
+        temp = searchFor("Revesz, Peter");
     }
-
-
 }
