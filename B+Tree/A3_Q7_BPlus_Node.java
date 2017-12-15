@@ -1,15 +1,24 @@
+/*
+COMP5511, Desai, Assignment 3 - Question 7
+avirup CHATTAPADAY, 26451640, av_chatt@encs.concordia.ca
+brandon HANDFIELD, 40070779, b_handfi@encs.concordia.ca
+jonathan BEDARD SCHAMI, 40050610, j_edars@encs.concordia.ca
+*/
+
 /**
  * Code used to implement the key nodes of B+Tree required for
  * Assignment 3 Question 7
  * Re-used here for Assignment 3, to sort the data in the assignment 3
- * @author   Jonathan Bedard Schami <jbschami@gmail.com>
+ * @author   Jonathan Bedard Schami <jbeda091@uottawa.ca>
+ * @author   Brandon Handfield <b_handfi@encs.concordia.ca>
+ * @author   Avirup Chattapadday <av_chatt@encs.concordia.ca>
  * @version  1.0
  * @since    1.0
  */
 
 public class A3_Q7_BPlus_Node {
     protected A3_Q7_BPlus_Node parent;
-    public A3_Q7_BPlus_Node[] children;
+    protected A3_Q7_BPlus_Node[] children;
     protected A3_Q7_BPlus_Node left;
     protected A3_Q7_BPlus_Node right;
     private String[] keys;
@@ -27,7 +36,6 @@ public class A3_Q7_BPlus_Node {
         children = null;
         left = null;
         right = null;
-
         fillLimit = 100;
         nextPointer=0;
     }
@@ -38,9 +46,9 @@ public class A3_Q7_BPlus_Node {
      * @param fillLimit the fill limit for the the node
      */
     public A3_Q7_BPlus_Node(int keysPerNode, double fillLimit){
-        keys = new String[keysPerNode];
+        keys = new String[keysPerNode-1];
         parent = null;
-        children = new A3_Q7_BPlus_Node[keysPerNode+1];
+        children = new A3_Q7_BPlus_Node[keysPerNode];
         left = null;
         right = null;
 
@@ -54,7 +62,7 @@ public class A3_Q7_BPlus_Node {
      * @return true if the next key busts the fill limit
      */
     public boolean checkNextKey(){
-        return Math.ceil(((double)(nextKey)/(double)keys.length)*100) >= fillLimit;
+        return Math.ceil(((double)(nextKey+1)/(double)keys.length)*100) >= this.fillLimit;
     }
 
     /**

@@ -1,8 +1,17 @@
+/*
+COMP5511, Desai, Assignment 3 - Question 7
+avirup CHATTAPADAY, 26451640, av_chatt@encs.concordia.ca
+brandon HANDFIELD, 40070779, b_handfi@encs.concordia.ca
+jonathan BEDARD SCHAMI, 40050610, j_edars@encs.concordia.ca
+*/
+
 /**
  * Code used to implement the leaf nodes of the B+ tree required for
  * Assignment 3 Question 7, It is a extension of the key node
  * Re-used here for Assignment 3, to sort the data in the assignment 3
- * @author   Jonathan Bedard Schami <jbschami@gmail.com>
+ * @author   Jonathan Bedard Schami <jbeda091@uottawa.ca>
+ * @author   Brandon Handfield <b_handfi@encs.concordia.ca>
+ * @author   Avirup Chattapadday <av_chatt@encs.concordia.ca>
  * @version  1.0
  * @since    1.0
  */
@@ -12,6 +21,7 @@ public class A3_Q7_BPlus_Leaf extends A3_Q7_BPlus_Node{
     int nextRecord;
 
 
+
     /**
      * Constructor for Leaf Node
      * @param recordsPerLeaf the number of records contained in each leaf node
@@ -19,9 +29,6 @@ public class A3_Q7_BPlus_Leaf extends A3_Q7_BPlus_Node{
      */
     public A3_Q7_BPlus_Leaf(int recordsPerLeaf, double fillLimit){
         records = new A3_Q7_DataModel[recordsPerLeaf];
-        parent = null;
-        left = null;
-        right = null;
 
         this.fillLimit = fillLimit;
         nextRecord=0;
@@ -32,7 +39,7 @@ public class A3_Q7_BPlus_Leaf extends A3_Q7_BPlus_Node{
      * @return true if the next record busts the limit
      */
     public boolean checkNextKey(){
-        return Math.ceil(((double)(nextRecord)/(double)records.length)*100) >= fillLimit;
+        return Math.ceil(((double)(nextRecord)/(double)records.length)*100) >= this.fillLimit;
     }
 
     /**
