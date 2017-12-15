@@ -1,16 +1,8 @@
-/*
-COMP5511, Desai, Assignment 3 - Question 7
-avirup CHATTAPADAY, 26451640, av_chatt@encs.concordia.ca
-brandon HANDFIELD, 40070779, b_handfi@encs.concordia.ca
-jonathan BEDARD SCHAMI, 40050610, j_edars@encs.concordia.ca
-*/
 
 /**
  * Code used to implement the quick sort required for Assignment 2 Question 6
  * Re-used here for Assignment 3, to sort the data in the assignment 3
  * @author   Jonathan Bedard Schami <jbeda091@uottawa.ca>
- * @author   Brandon Handfield <b_handfi@encs.concordia.ca>
- * @author   Avirup Chattapadday <av_chatt@encs.concordia.ca>
  * @version  1.0
  * @since    1.0
  */
